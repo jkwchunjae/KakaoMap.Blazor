@@ -1,6 +1,6 @@
 ﻿namespace KakaoMapBlazor;
 
-public class KakaoMap : IKakaoMap, IDisposable
+public partial class KakaoMap : IKakaoMap, IDisposable
 {
     private IJSRuntime JS;
     private DotNetObjectReference<KakaoMap>? _kakaoMapRef;
@@ -9,50 +9,6 @@ public class KakaoMap : IKakaoMap, IDisposable
     private IJSObjectReference? _map;
 
     private List<Func<IJSObjectReference, ValueTask>> _mapLoadedAction = new();
-
-    #region event Clicked
-    private int _clickEventReferenceCount = 0;
-    private event EventHandler<MouseEvent>? _clicked;
-    public event EventHandler<MouseEvent> Clicked
-    {
-        add
-        {
-            // 대충 했음
-            if (_clickEventReferenceCount == 0)
-            {
-                Func<IJSObjectReference, ValueTask> fn = map => map.InvokeVoidAsync("addClickEvent");
-                lock (_mapLock)
-                {
-                    if (_map == null)
-                    {
-                        _mapLoadedAction.Add(fn);
-                    }
-                    else
-                    {
-                        fn(_map);
-                    }
-                }
-            }
-            _clickEventReferenceCount++;
-            _clicked += value;
-        }
-        remove
-        {
-            _clicked -= value;
-            _clickEventReferenceCount--;
-            if (_clickEventReferenceCount == 0)
-            {
-                _map!.InvokeVoidAsync("removeClickEvent");
-            }
-        }
-    }
-
-    [JSInvokable]
-    public void OnMapClicked(MouseEvent mouseEvent)
-    {
-        _clicked?.Invoke(this, mouseEvent);
-    }
-    #endregion
 
     public KakaoMap(IJSRuntime jsRuntime)
     {

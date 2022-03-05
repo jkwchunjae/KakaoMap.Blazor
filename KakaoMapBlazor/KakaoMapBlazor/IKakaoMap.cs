@@ -35,19 +35,19 @@ public interface IKakaoMap
     //ValueTask<MapProjection> GetProjection();
     //ValueTask SetCursor(string style);
 
-    //event EventHandler CenterChanged;
-    //event EventHandler ZoomStarted;
-    //event EventHandler ZoomChanged;
-    //event EventHandler BoundsChanged;
-    event EventHandler<MouseEvent> Clicked;
-    //event EventHandler<MouseEvent> DblClicked;
-    //event EventHandler<MouseEvent> RightClicked;
-    //event EventHandler<MouseEvent> MouseMoved;
-    //event EventHandler DragStarted;
-    //event EventHandler Drag;
-    //event EventHandler DragEnd;
-    //event EventHandler Idle;
-    //event EventHandler TilesLoaded;
-    //event EventHandler MaptypeIdChanged;
+    event EventHandler CenterChanged;
+    event EventHandler ZoomStart;
+    event EventHandler ZoomChanged;
+    event EventHandler BoundsChanged;
+    event EventHandler<MouseEvent> Click;
+    event EventHandler<MouseEvent> DblClick;
+    event EventHandler<MouseEvent> RightClick;
+    event EventHandler<MouseEvent> MouseMove;
+    event EventHandler DragStart;
+    event EventHandler Drag;
+    event EventHandler DragEnd;
+    event EventHandler Idle;
+    event EventHandler TilesLoaded;
+    event EventHandler MapTypeIdChanged;
 
 }
