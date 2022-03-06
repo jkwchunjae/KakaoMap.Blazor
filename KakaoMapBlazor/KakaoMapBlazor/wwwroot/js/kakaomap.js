@@ -1,16 +1,28 @@
-export function createMap(mapId, instance) {
-    return new Map(mapId, instance);
+class Utils {
+    removeNullProperties(obj) {
+        return Object.keys(obj)
+            .filter(key => obj[key] != null)
+            .reduce((result, key) => ({
+            ...result,
+            [key]: typeof obj[key] === 'object' ? this.removeNullProperties(obj[key]) : obj[key],
+        }), {});
+    }
+    newLatLng(ll) {
+        return new kakao.maps.LatLng(ll.latitude, ll.longitude);
+    }
+}
+const utils = new Utils();
+export function createMap(mapId, option, instance) {
+    const options = utils.removeNullProperties(option);
+    return new Map(mapId, options, instance);
 }
 class Map {
     map;
     dotnetInstance;
-    constructor(mapId, instance) {
+    constructor(mapId, options, instance) {
         this.dotnetInstance = instance;
         const container = document.getElementById(mapId);
-        const options = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667),
-            level: 3 //지도의 레벨(확대, 축소 정도)
-        };
+        options.center = utils.newLatLng(options.center);
         this.map = new kakao.maps.Map(container, options);
     }
     //#region Events

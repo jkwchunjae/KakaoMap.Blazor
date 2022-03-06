@@ -9,6 +9,9 @@ public partial class KakaoMapComponent : ComponentBase, IDisposable
     [Parameter]
     public string Style { get; set; }
 
+    [Parameter]
+    public MapCreateOption CreateOption { get; set; }
+
     private KakaoMap _map;
 
     public IKakaoMap Instance => _map;
@@ -35,7 +38,7 @@ public partial class KakaoMapComponent : ComponentBase, IDisposable
             if (_map == null)
                 return;
 
-            await _map.CreateMapAsync(_mapId);
+            await _map.CreateMapAsync(_mapId, CreateOption);
         }
     }
 

@@ -1,21 +1,40 @@
 ﻿
 declare var kakao: any;
 
-export function createMap(mapId, instance) {
-    return new Map(mapId, instance);
+class Utils {
+    public removeNullProperties(obj) {
+        return Object.keys(obj)
+            .filter(key => obj[key] != null)
+            .reduce((result, key) => ({
+                ...result,
+                [key]: typeof obj[key] === 'object' ? this.removeNullProperties(obj[key]) : obj[key],
+            }), {});
+    }
+}
+
+class KakaoUtils {
+    public createLatLng(ll) {
+        return new kakao.maps.LatLng(ll.latitude, ll.longitude);
+    }
+}
+
+const utils = new Utils();
+const kUtils = new KakaoUtils();
+
+export function createMap(mapId, option, instance) {
+    const options = utils.removeNullProperties(option);
+    return new Map(mapId, options, instance);
 }
 
 class Map {
     private map: any;
     private dotnetInstance: any;
 
-    constructor(mapId: string, instance) {
+    constructor(mapId: string, options, instance) {
         this.dotnetInstance = instance;
         const container = document.getElementById(mapId);
-        const options = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-            level: 3 //지도의 레벨(확대, 축소 정도)
-        };
+
+        options.center = kUtils.createLatLng(options.center);
 
         this.map = new kakao.maps.Map(container, options);
     }
