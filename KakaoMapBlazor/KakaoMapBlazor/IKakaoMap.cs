@@ -4,9 +4,9 @@ public interface IKakaoMap
 {
     ValueTask SetCenter(LatLng position);
     ValueTask<LatLng> GetCenter();
-    //ValueTask SetLevel(int level);
-    //ValueTask SetLevel(int level, SetLevelOption option);
-    //ValueTask<int> GetLevel();
+    ValueTask SetLevel(int level);
+    ValueTask SetLevel(int level, SetLevelOption option);
+    ValueTask<int> GetLevel();
     //ValueTask SetMapTypeId(MapType mapType);
     //ValueTask<MapType> GetMapTypeId();
     //ValueTask SetBounds(LatLngBounds bounds);

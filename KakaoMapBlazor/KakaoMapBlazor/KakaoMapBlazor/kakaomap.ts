@@ -229,5 +229,21 @@ class Map {
     getCenter() {
         return this.map.getCenter();
     }
+
+    setLevel(level, options) {
+        if (!options) {
+            this.map.setLevel(level);
+        } else {
+            options = utils.removeNullProperties(options);
+            if (options.anchor) {
+                options.anchor = utils.newLatLng(options.anchor);
+            }
+            this.map.setLevel(level, options);
+        }
+    }
+
+    getLevel() {
+        return this.map.getLevel();
+    }
 }
 

@@ -14,4 +14,22 @@ public partial class KakaoMap : IKakaoMap
         return center;
     }
     #endregion
+
+    #region Level
+    public async ValueTask SetLevel(int level)
+    {
+        await _map!.InvokeVoidAsync("setLevel", level, null);
+    }
+
+    public async ValueTask SetLevel(int level, SetLevelOption option)
+    {
+        await _map!.InvokeVoidAsync("setLevel", level, option);
+    }
+
+    public async ValueTask<int> GetLevel()
+    {
+        var level = await _map!.InvokeAsync<int>("getLevel");
+        return level;
+    }
+    #endregion
 }
