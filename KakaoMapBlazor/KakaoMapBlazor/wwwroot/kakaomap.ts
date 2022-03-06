@@ -254,15 +254,13 @@ class Map {
     //#endregion
 
     //#region MapTypeId
-    setMapTypeId(mapTypeIdStr) {
-        const mapTypeId = kakao.maps.MapTypeId[mapTypeIdStr];
-        console.log('mapTypeId', mapTypeIdStr, mapTypeId);
+    setMapTypeId(mapTypeId) {
         this.map.setMapTypeId(mapTypeId);
     }
 
     getMapTypeId() {
         const mapTypeIdValue = this.map.getMapTypeId();
-        return mapTypeIdValue - 1;
+        return mapTypeIdValue;
     }
     //#endregion
 

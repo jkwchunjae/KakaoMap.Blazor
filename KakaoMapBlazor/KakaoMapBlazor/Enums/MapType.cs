@@ -7,6 +7,9 @@
 /// </summary>
 public enum MapType
 {
+    /// <summary> Kakao api와 index를 맞추기 위해 추가했음. (사용하지 않음) </summary>
+    None,
+
     // Base type
     /// <summary> 일반 지도 </summary>
     RoadMap,

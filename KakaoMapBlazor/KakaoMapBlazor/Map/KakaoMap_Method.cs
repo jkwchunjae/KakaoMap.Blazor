@@ -36,7 +36,7 @@ public partial class KakaoMap : IKakaoMap
     #region MapTypeId
     public async ValueTask SetMapTypeId(MapType mapType)
     {
-        await _map!.InvokeVoidAsync("setMapTypeId", mapType.ToString().ToUpper());
+        await _map!.InvokeVoidAsync("setMapTypeId", mapType);
     }
 
     public async ValueTask<MapType> GetMapTypeId()
