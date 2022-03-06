@@ -1,25 +1,6 @@
-﻿
+﻿import { utils } from "./utils.js"
+
 declare var kakao: any;
-
-class Utils {
-    public removeNullProperties(obj) {
-        return Object.keys(obj)
-            .filter(key => obj[key] != null)
-            .reduce((result, key) => ({
-                ...result,
-                [key]: typeof obj[key] === 'object' ? this.removeNullProperties(obj[key]) : obj[key],
-            }), {});
-    }
-}
-
-class KakaoUtils {
-    public createLatLng(ll) {
-        return new kakao.maps.LatLng(ll.latitude, ll.longitude);
-    }
-}
-
-const utils = new Utils();
-const kUtils = new KakaoUtils();
 
 export function createMap(mapId, option, instance) {
     const options = utils.removeNullProperties(option);
@@ -34,7 +15,7 @@ class Map {
         this.dotnetInstance = instance;
         const container = document.getElementById(mapId);
 
-        options.center = kUtils.createLatLng(options.center);
+        options.center = utils.newLatLng(options.center);
 
         this.map = new kakao.maps.Map(container, options);
     }
