@@ -8,5 +8,6 @@ global using Microsoft.AspNetCore.Components;
 global using Microsoft.JSInterop;
 global using KakaoMapBlazor.Models;
 global using KakaoMapBlazor.Types;
+global using KakaoMapBlazor.Options;
 
 
