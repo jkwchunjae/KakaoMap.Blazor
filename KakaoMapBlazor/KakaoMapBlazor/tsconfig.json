@@ -9,6 +9,6 @@
         "outDir": "wwwroot/js"
     },
     "include": [
-        "_scripts/**/*"
+        "KakaoMapBlazor/**/*"
     ]
 }
