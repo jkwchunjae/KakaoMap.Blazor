@@ -35,15 +35,4 @@ public partial class KakaoMap : IKakaoMap, IDisposable
             await fn(_map);
         }
     }
-
-    public async ValueTask SetCenter(LatLng position)
-    {
-        await _map!.InvokeVoidAsync("setCenter", position);
-    }
-
-    public async ValueTask<LatLng> GetCenter()
-    {
-        var center = await _map!.InvokeAsync<LatLng>("getCenter");
-        return center;
-    }
 }
