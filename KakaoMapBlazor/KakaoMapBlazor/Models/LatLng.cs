@@ -14,4 +14,11 @@ public class LatLng
     }
     public double La { get; set; }
     public double Ma { get; set; }
+
+    public LatLng() { }
+    public LatLng(double latitude, double longitude)
+    {
+        Latitude = latitude;
+        Longitude = longitude;
+    }
 }
