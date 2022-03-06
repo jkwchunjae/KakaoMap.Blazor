@@ -1,4 +1,4 @@
-﻿namespace KakaoMapBlazor.Types;
+﻿namespace KakaoMapBlazor.Enums;
 
 /// <summary>
 /// kakao.maps.MapTypeId 객체

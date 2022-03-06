@@ -1,4 +1,4 @@
-﻿namespace KakaoMapBlazor.Types;
+﻿namespace KakaoMapBlazor.Enums;
 
 public enum CopyrightPosition
 {
