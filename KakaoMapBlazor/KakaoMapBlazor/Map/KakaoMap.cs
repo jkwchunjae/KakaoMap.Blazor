@@ -1,4 +1,4 @@
-﻿namespace KakaoMapBlazor;
+﻿namespace KakaoMapBlazor.Map;
 
 public partial class KakaoMap : IKakaoMap, IDisposable
 {

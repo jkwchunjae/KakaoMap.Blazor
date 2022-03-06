@@ -1,4 +1,4 @@
-﻿namespace KakaoMapBlazor;
+﻿namespace KakaoMapBlazor.Map;
 
 // https://apis.map.kakao.com/web/documentation/#Map_Events
 public partial class KakaoMap : IKakaoMap
