@@ -13,6 +13,9 @@ class Utils {
     public newLatLng(ll) {
         return new kakao.maps.LatLng(ll.latitude, ll.longitude);
     }
+
+    public convertMayTypeId(mapTypeIdStr) {
+    }
 }
 
 export const utils = new Utils();

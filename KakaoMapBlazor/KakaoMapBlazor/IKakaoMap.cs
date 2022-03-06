@@ -7,8 +7,8 @@ public interface IKakaoMap
     ValueTask SetLevel(int level);
     ValueTask SetLevel(int level, SetLevelOption option);
     ValueTask<int> GetLevel();
-    //ValueTask SetMapTypeId(MapType mapType);
-    //ValueTask<MapType> GetMapTypeId();
+    ValueTask SetMapTypeId(MapType mapType);
+    ValueTask<MapType> GetMapTypeId();
     //ValueTask SetBounds(LatLngBounds bounds);
     //ValueTask SetBounds(LatLngBounds bounds, double paddingTop, double paddingRight, double paddingBottom, double paddingLeft);
     //ValueTask<LatLngBounds> GetBounds();

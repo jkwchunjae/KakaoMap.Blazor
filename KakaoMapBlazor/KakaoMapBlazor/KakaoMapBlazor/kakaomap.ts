@@ -221,6 +221,10 @@ class Map {
 
     //#endregion
 
+    //#region Methods
+    // https://apis.map.kakao.com/web/documentation/#Map_Methods
+
+    //#region Center
     setCenter(position) {
         const center = new kakao.maps.LatLng(position.latitude, position.longitude);
         this.map.setCenter(center);
@@ -229,7 +233,9 @@ class Map {
     getCenter() {
         return this.map.getCenter();
     }
+    //#endregion Center
 
+    //#region Level
     setLevel(level, options) {
         if (!options) {
             this.map.setLevel(level);
@@ -245,5 +251,21 @@ class Map {
     getLevel() {
         return this.map.getLevel();
     }
+    //#endregion
+
+    //#region MapTypeId
+    setMapTypeId(mapTypeIdStr) {
+        const mapTypeId = kakao.maps.MapTypeId[mapTypeIdStr];
+        console.log('mapTypeId', mapTypeIdStr, mapTypeId);
+        this.map.setMapTypeId(mapTypeId);
+    }
+
+    getMapTypeId() {
+        const mapTypeIdValue = this.map.getMapTypeId();
+        return mapTypeIdValue - 1;
+    }
+    //#endregion
+
+    //#endregion
 }
 

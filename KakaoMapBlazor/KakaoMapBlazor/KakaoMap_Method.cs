@@ -32,4 +32,17 @@ public partial class KakaoMap : IKakaoMap
         return level;
     }
     #endregion
+
+    #region MapTypeId
+    public async ValueTask SetMapTypeId(MapType mapType)
+    {
+        await _map!.InvokeVoidAsync("setMapTypeId", mapType.ToString().ToUpper());
+    }
+
+    public async ValueTask<MapType> GetMapTypeId()
+    {
+        var mapTypeId = await _map!.InvokeAsync<MapType>("getMapTypeId");
+        return mapTypeId;
+    }
+    #endregion
 }
