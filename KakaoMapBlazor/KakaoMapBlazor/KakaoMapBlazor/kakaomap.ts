@@ -2,12 +2,7 @@
 
 declare var kakao: any;
 
-export function createMap(mapId, option, instance) {
-    const options = utils.removeNullProperties(option);
-    return new Map(mapId, options, instance);
-}
-
-class Map {
+export class Map {
     private map: any;
     private dotnetInstance: any;
 
@@ -18,6 +13,10 @@ class Map {
         options.center = utils.newLatLng(options.center);
 
         this.map = new kakao.maps.Map(container, options);
+    }
+
+    getMapObject() {
+        return this.map;
     }
 
     //#region Events

@@ -5,6 +5,8 @@ public partial class KakaoMap : IKakaoMap, IDisposable
     private IJSRuntime JS;
     private DotNetObjectReference<KakaoMap>? _kakaoMapRef;
 
+    private IJSObjectReference? _module;
+
     private object _mapLock = new object();
     private IJSObjectReference? _map;
 
@@ -23,8 +25,8 @@ public partial class KakaoMap : IKakaoMap, IDisposable
     public async ValueTask CreateMapAsync(string mapId, MapCreateOption createOption)
     {
         _kakaoMapRef = DotNetObjectReference.Create(this);
-        var module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/KakaoMapBlazor/js/kakaomap.js");
-        var map = await module.InvokeAsync<IJSObjectReference>("createMap", mapId, createOption, _kakaoMapRef);
+        _module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/KakaoMapBlazor/js/kakaomain.js");
+        var map = await _module.InvokeAsync<IJSObjectReference>("createMap", mapId, createOption, _kakaoMapRef);
         lock (_mapLock)
         {
             _map = map;
@@ -34,5 +36,19 @@ public partial class KakaoMap : IKakaoMap, IDisposable
         {
             await fn(_map);
         }
+    }
+
+    public async ValueTask<IKakaoMarker> SetMarker(MarkerCreateOptionInMap option)
+    {
+        if (_module == null)
+            throw new ModuleNotLoadedException();
+        if (_map == null)
+            throw new NullReferenceException("map is null. CreateMap first.");
+
+        var marker = new KakaoMarker(_module);
+        await marker.CreateMarkerAsync(option);
+        await marker.SetMap(_map);
+
+        return marker;
     }
 }

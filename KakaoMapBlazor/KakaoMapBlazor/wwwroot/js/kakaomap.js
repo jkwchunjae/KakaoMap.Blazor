@@ -1,9 +1,5 @@
 import { utils } from "./utils.js";
-export function createMap(mapId, option, instance) {
-    const options = utils.removeNullProperties(option);
-    return new Map(mapId, options, instance);
-}
-class Map {
+export class Map {
     map;
     dotnetInstance;
     constructor(mapId, options, instance) {
@@ -11,6 +7,9 @@ class Map {
         const container = document.getElementById(mapId);
         options.center = utils.newLatLng(options.center);
         this.map = new kakao.maps.Map(container, options);
+    }
+    getMapObject() {
+        return this.map;
     }
     //#region Events
     // https://apis.map.kakao.com/web/documentation/#Map_Events

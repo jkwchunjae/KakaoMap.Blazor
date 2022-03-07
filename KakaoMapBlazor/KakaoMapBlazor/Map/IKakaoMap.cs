@@ -50,4 +50,7 @@ public interface IKakaoMap
     event EventHandler TilesLoaded;
     event EventHandler MapTypeIdChanged;
 
+
+
+    ValueTask<IKakaoMarker> SetMarker(MarkerCreateOptionInMap option);
 }
