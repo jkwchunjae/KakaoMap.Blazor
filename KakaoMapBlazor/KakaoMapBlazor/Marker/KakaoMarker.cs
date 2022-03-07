@@ -1,6 +1,6 @@
 ﻿namespace KakaoMapBlazor.Marker;
 
-public class KakaoMarker : IKakaoMarker
+public partial class KakaoMarker : IKakaoMarker, IDisposable
 {
     private DotNetObjectReference<KakaoMarker>? _kakaoMarkerRef;
 
@@ -9,9 +9,16 @@ public class KakaoMarker : IKakaoMarker
     private object _markerLock = new object();
     private IJSObjectReference? _marker;
 
+    private List<Func<IJSObjectReference, ValueTask>> _markerLoadedAction = new();
+
     public KakaoMarker(IJSObjectReference module)
     {
         _module = module;
+    }
+
+    public void Dispose()
+    {
+        _kakaoMarkerRef?.Dispose();
     }
 
     public async ValueTask CreateMarkerAsync(MarkerCreateOptionInMap option)

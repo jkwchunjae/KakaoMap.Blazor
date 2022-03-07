@@ -2,5 +2,6 @@
 
 public interface IKakaoMarker
 {
+    event EventHandler Click;
 }
 

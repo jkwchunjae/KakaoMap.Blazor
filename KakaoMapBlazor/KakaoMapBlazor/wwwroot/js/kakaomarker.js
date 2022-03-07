@@ -9,6 +9,20 @@ export class Marker {
         }
         this.marker = new kakao.maps.Marker(options);
     }
+    //#region Events
+    //#region Click
+    onClick() {
+        this.dotnetInstance.invokeMethodAsync('OnClick');
+    }
+    addClickEvent() {
+        kakao.maps.event.addListener(this.marker, 'click', this.onClick.bind(this));
+    }
+    removeClickEvent() {
+        kakao.maps.event.removeListener(this.marker, 'click', this.onClick.bind(this));
+    }
+    //#endregion
+    //#endregion
+    //#region Methods
     setMap(map) {
         this.marker.setMap(map.getMapObject());
     }
