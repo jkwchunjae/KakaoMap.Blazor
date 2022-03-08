@@ -30,17 +30,28 @@ export class Marker {
         this.marker.getMap();
     }
     setImage(image) {
-        this.marker.setImage(image);
+        image = utils.removeNullProperties(image);
+        if (image.options) {
+            const options = utils.makeMarkerImageOption(image.options);
+            const markerImage = new kakao.maps.MarkerImage(image.src, new kakao.maps.Size(image.size.width, image.size.height), options);
+            this.marker.setImage(markerImage);
+        }
+        else {
+            const markerImage = new kakao.maps.MarkerImage(image.src, new kakao.maps.Size(image.size.width, image.size.height));
+            this.marker.setImage(markerImage);
+        }
     }
     getImage() {
-        this.marker.getImage();
+        const image = this.marker.getImage();
+        console.log(image, JSON.stringify(image));
+        return image;
     }
     setPosition(position) {
         position = utils.newLatLng(position);
         this.marker.setPosition(position);
     }
     getPosition() {
-        this.marker.getPosition();
+        return this.marker.getPosition();
     }
 }
 //# sourceMappingURL=kakaomarker.js.map
