@@ -16,7 +16,11 @@ In `*.razor` file
 ```
 @using KakaoMapBlazor
 
-<KakaoMapComponent @ref="kakaoMapComponent" Style="width: 500px; height: 400px;"></KakaoMapComponent>
+<KakaoMapComponent
+    @ref="kakaoMapComponent"
+    CreateOption="mapCreateOption"
+    Style="width: 500px; height: 400px;">
+</KakaoMapComponent>
 
 @code {
     [Inject]
@@ -24,6 +28,12 @@ In `*.razor` file
 
     KakaoMapComponent kakaoMapComponent;
     IKakaoMap KakaoMap => kakaoMapComponent?.Instance;
+    
+    MapCreateOption mapCreateOption = new MapCreateOption(new LatLng(33.450701, 126.570667))
+    {
+        MapTypeId = MapType.RoadMap,
+        Level = 4,
+    };
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -31,11 +41,20 @@ In `*.razor` file
         {
             KakaoMap.Clicked += async (s, e) =>
             {
-                await KakaoMap.SetCenter(e.LatLng);
+                await JS.InvokeVoidAsync("console.log", "OnClick", e);
             };
             KakaoMap.Clicked += async (s, e) =>
             {
-                await JS.InvokeVoidAsync("console.log", "OnClick", e);
+                var position = e.LatLng;
+                var marker = await KakaoMap.SetMarker(new MarkerCreateOptionInMap
+                {
+                    Position = position,
+                });
+                
+                marker.Click += async (s, _) =>
+                {
+                    await JS.InvokeVoidAsync("console.log", "marker clicked");
+                };
             };
         }
     }
