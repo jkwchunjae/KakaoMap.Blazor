@@ -40,44 +40,56 @@ public partial class KakaoMarker : IKakaoMarker
 
     public ValueTask<MarkerImage> GetImage()
     {
-        //try
-        //{
-        //    await _marker!.InvokeAsync<MarkerImage>("getImage");
-        //}
-        //catch
-        //{
-        //}
-        //return _image;
         return ValueTask.FromResult(_image);
     }
 
-    public ValueTask SetPosition(LatLng position)
+    public async ValueTask SetPosition(LatLng position)
     {
-        throw new NotImplementedException();
+        await _marker!.InvokeVoidAsync("setPosition", position);
     }
 
-    public ValueTask<LatLng> GetPosition()
+    public async ValueTask<LatLng> GetPosition()
     {
-        throw new NotImplementedException();
+        return await _marker!.InvokeAsync<LatLng>("getPosition");
     }
 
-    public ValueTask SetVisible(bool visible)
+    public async ValueTask SetVisible(bool visible)
     {
-        throw new NotImplementedException();
+        await _marker!.InvokeVoidAsync("setVisible", visible);
     }
 
-    public ValueTask<bool> GetVisible()
+    public async ValueTask<bool> GetVisible()
     {
-        throw new NotImplementedException();
+        return await _marker!.InvokeAsync<bool>("getVisible");
     }
 
-    public ValueTask SetTitle(string title)
+    public async ValueTask SetTitle(string title)
     {
-        throw new NotImplementedException();
+        await _marker!.InvokeVoidAsync("setTitle", title);
     }
 
-    public ValueTask<string> GetTitle()
+    public async ValueTask<string> GetTitle()
     {
-        throw new NotImplementedException();
+        return await _marker!.InvokeAsync<string>("getTitle");
+    }
+
+    public async ValueTask SetDraggable(bool draggable)
+    {
+        await _marker!.InvokeVoidAsync("setDraggable", draggable);
+    }
+
+    public async ValueTask<bool> GetDraggable()
+    {
+        return await _marker!.InvokeAsync<bool>("getDraggable");
+    }
+
+    public async ValueTask SetClickable(bool clickable)
+    {
+        await _marker!.InvokeVoidAsync("setClickable", clickable);
+    }
+
+    public async ValueTask<bool> GetClickable()
+    {
+        return await _marker!.InvokeAsync<bool>("getClickable");
     }
 }

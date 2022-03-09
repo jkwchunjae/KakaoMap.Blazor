@@ -13,10 +13,10 @@ public interface IKakaoMarker
     ValueTask<bool> GetVisible();
     ValueTask SetTitle(string title);
     ValueTask<string> GetTitle();
-    //ValueTask SetDraggable(bool draggable);
-    //ValueTask<bool> GetDraggable();
-    //ValueTask SetClickable(bool clickable);
-    //ValueTask<bool> GetClickable();
+    ValueTask SetDraggable(bool draggable);
+    ValueTask<bool> GetDraggable();
+    ValueTask SetClickable(bool clickable);
+    ValueTask<bool> GetClickable();
     //ValueTask SetAltitude(double altitude);
     //ValueTask<double> GetAltitude();
     //ValueTask SetRange(double range);
@@ -25,10 +25,10 @@ public interface IKakaoMarker
     //ValueTask<double> GetOpacity();
 
     event EventHandler Click;
-    //event EventHandler MouseOver;
-    //event EventHandler MouseOut;
-    //event EventHandler RightClick;
-    //event EventHandler DragStart;
-    //event EventHandler DragEnd;
+    event EventHandler MouseOver;
+    event EventHandler MouseOut;
+    event EventHandler RightClick;
+    event EventHandler DragStart;
+    event EventHandler DragEnd;
 }
 

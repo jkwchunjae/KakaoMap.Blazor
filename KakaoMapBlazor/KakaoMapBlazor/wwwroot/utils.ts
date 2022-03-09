@@ -1,15 +1,6 @@
 ﻿declare var kakao: any;
 
 class Utils {
-    public removeNullProperties(obj) {
-        return Object.keys(obj)
-            .filter(key => obj[key] != null)
-            .reduce((result, key) => ({
-                ...result,
-                [key]: obj[key],
-            }), {});
-    }
-
     private isLatLng(obj): boolean {
         if (typeof obj !== 'object') {
             return false;

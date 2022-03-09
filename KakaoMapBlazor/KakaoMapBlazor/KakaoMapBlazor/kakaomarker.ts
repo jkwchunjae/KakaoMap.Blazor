@@ -52,6 +52,66 @@ export class Marker {
     }
     //#endregion
 
+    onMouseOver() {
+        this.dotnetInstance.invokeMethodAsync('OnMouseOver');
+    }
+
+    addMouseOverEvent() {
+        kakao.maps.event.addListener(this.marker, 'mouseover', this.onMouseOver.bind(this));
+    }
+
+    removeMouseOverEvent() {
+        kakao.maps.event.removeListener(this.marker, 'mouseover', this.onMouseOver.bind(this));
+    }
+
+    onMouseOut() {
+        this.dotnetInstance.invokeMethodAsync('OnMouseOut');
+    }
+
+    addMouseOutEvent() {
+        kakao.maps.event.addListener(this.marker, 'mouseout', this.onMouseOut.bind(this));
+    }
+
+    removeMouseOutEvent() {
+        kakao.maps.event.removeListener(this.marker, 'mouseout', this.onMouseOut.bind(this));
+    }
+
+    onRightClick() {
+        this.dotnetInstance.invokeMethodAsync('OnRightClick');
+    }
+
+    addRightClickEvent() {
+        kakao.maps.event.addListener(this.marker, 'rightclick', this.onRightClick.bind(this));
+    }
+
+    removeRightClickEvent() {
+        kakao.maps.event.removeListener(this.marker, 'rightclick', this.onRightClick.bind(this));
+    }
+
+    onDragStart() {
+        this.dotnetInstance.invokeMethodAsync('OnDragStart');
+    }
+
+    addDragStartEvent() {
+        kakao.maps.event.addListener(this.marker, 'dragstart', this.onDragStart.bind(this));
+    }
+
+    removeDragStartEvent() {
+        kakao.maps.event.removeListener(this.marker, 'dragstart', this.onDragStart.bind(this));
+    }
+
+    onDragEnd() {
+        this.dotnetInstance.invokeMethodAsync('OnDragEnd');
+    }
+
+    addDragEndEvent() {
+        kakao.maps.event.addListener(this.marker, 'dragend', this.onDragEnd.bind(this));
+    }
+
+    removeDragEndEvent() {
+        kakao.maps.event.removeListener(this.marker, 'dragend', this.onDragEnd.bind(this));
+    }
+
     //#endregion
 
     //#region Methods
@@ -81,6 +141,38 @@ export class Marker {
 
     getPosition() {
         return this.marker.getPosition();
+    }
+
+    setVisible(visible) {
+        this.marker.setVisible(visible);
+    }
+
+    getVisible() {
+        return this.marker.getVisible();
+    }
+
+    setTitle(title) {
+        this.marker.setTitle(title);
+    }
+
+    getTitle() {
+        return this.marker.getTitle();
+    }
+
+    setDraggable(draggable) {
+        this.marker.setDraggable(draggable);
+    }
+
+    getDraggable() {
+        return this.marker.getDraggable();
+    }
+
+    setClickable(clickable) {
+        this.marker.setClickable(clickable);
+    }
+
+    getClickable() {
+        return this.marker.getClickable();
     }
     //#endregion
 }

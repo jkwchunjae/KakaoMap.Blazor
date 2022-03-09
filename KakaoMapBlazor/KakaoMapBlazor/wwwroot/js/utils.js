@@ -1,12 +1,4 @@
 class Utils {
-    removeNullProperties(obj) {
-        return Object.keys(obj)
-            .filter(key => obj[key] != null)
-            .reduce((result, key) => ({
-            ...result,
-            [key]: obj[key],
-        }), {});
-    }
     isLatLng(obj) {
         if (typeof obj !== 'object') {
             return false;
