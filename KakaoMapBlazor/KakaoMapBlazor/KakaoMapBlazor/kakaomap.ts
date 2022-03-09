@@ -10,7 +10,7 @@ export class Map {
         this.dotnetInstance = instance;
         const container = document.getElementById(mapId);
 
-        options.center = utils.newLatLng(options.center);
+        options = utils.makeKakaoObject(options);
 
         this.map = new kakao.maps.Map(container, options);
     }
@@ -225,7 +225,7 @@ export class Map {
 
     //#region Center
     setCenter(position) {
-        const center = new kakao.maps.LatLng(position.latitude, position.longitude);
+        const center = utils.makeKakaoObject(position);
         this.map.setCenter(center);
     }
 
@@ -239,10 +239,7 @@ export class Map {
         if (!options) {
             this.map.setLevel(level);
         } else {
-            options = utils.removeNullProperties(options);
-            if (options.anchor) {
-                options.anchor = utils.newLatLng(options.anchor);
-            }
+            options = utils.makeKakaoObject(options);
             this.map.setLevel(level, options);
         }
     }

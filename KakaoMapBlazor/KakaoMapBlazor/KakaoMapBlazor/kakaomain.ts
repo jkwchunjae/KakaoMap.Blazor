@@ -2,12 +2,10 @@
 import { Map } from "./kakaomap.js"
 import { Marker } from "./kakaomarker.js"
 
-export function createMap(mapId, option, instance) {
-    const options = utils.removeNullProperties(option);
+export function createMap(mapId, options, instance) {
     return new Map(mapId, options, instance);
 }
 
-export function createMarker(option, instance) {
-    const options = utils.removeNullProperties(option);
+export function createMarker(options, instance) {
     return new Marker(options, instance);
 }

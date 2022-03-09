@@ -4,36 +4,68 @@ class Utils {
             .filter(key => obj[key] != null)
             .reduce((result, key) => ({
             ...result,
-            [key]: typeof obj[key] === 'object' ? this.removeNullProperties(obj[key]) : obj[key],
+            [key]: obj[key],
         }), {});
     }
-    newLatLng(ll) {
-        return new kakao.maps.LatLng(ll.latitude, ll.longitude);
+    isLatLng(obj) {
+        if (typeof obj !== 'object') {
+            return false;
+        }
+        const keys = Object.keys(obj);
+        if (keys.includes('latitude') && keys.includes('longitude')) {
+            return true;
+        }
+        return false;
     }
-    makeMarkerImageOption(option) {
-        const options = {};
-        if (option.alt) {
-            options['alt'] = option.alt;
+    isPoint(obj) {
+        if (typeof obj !== 'object') {
+            return false;
         }
-        if (option.coords) {
-            options['coords'] = option.coords;
+        const keys = Object.keys(obj);
+        if (keys.includes('x') && keys.includes('y')) {
+            return true;
         }
-        if (option.offset) {
-            const p = option.offset;
-            options['offset'] = new kakao.maps.Point(p.x, p.y);
+        return false;
+    }
+    isSize(obj) {
+        if (typeof obj !== 'object') {
+            return false;
         }
-        if (option.shape) {
-            options['shape'] = option.shape;
+        const keys = Object.keys(obj);
+        if (keys.includes('width') && keys.includes('height')) {
+            return true;
         }
-        if (option.spriteOrigin) {
-            const p = option.spriteOrigin;
-            options['spriteOrigin'] = new kakao.maps.Point(p.x, p.y);
+        return false;
+    }
+    makeKakaoObject(obj) {
+        if (!obj) {
+            return obj;
         }
-        if (option.spriteSize) {
-            const s = option.spriteSize;
-            options['spriteSize'] = new kakao.maps.Size(s.width, s.height);
+        if (Array.isArray(obj)) {
+            return obj.map(x => this.makeKakaoObject(x));
         }
-        return options;
+        else if (typeof obj === 'object') {
+            if (this.isPoint(obj)) {
+                return new kakao.maps.Point(obj.x, obj.y);
+            }
+            else if (this.isSize(obj)) {
+                return new kakao.maps.Size(obj.width, obj.height);
+            }
+            else if (this.isLatLng(obj)) {
+                return new kakao.maps.LatLng(obj.latitude, obj.longitude);
+            }
+            else {
+                return Object.keys(obj)
+                    .filter(key => obj[key] !== null)
+                    .reduce((result, key) => ({
+                    ...result,
+                    [key]: this.makeKakaoObject(obj[key]),
+                }), {});
+            }
+        }
+        else {
+            return obj;
+        }
     }
 }
 export const utils = new Utils();

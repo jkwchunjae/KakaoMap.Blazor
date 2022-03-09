@@ -5,7 +5,7 @@ export class Map {
     constructor(mapId, options, instance) {
         this.dotnetInstance = instance;
         const container = document.getElementById(mapId);
-        options.center = utils.newLatLng(options.center);
+        options = utils.makeKakaoObject(options);
         this.map = new kakao.maps.Map(container, options);
     }
     getMapObject() {
@@ -172,7 +172,7 @@ export class Map {
     // https://apis.map.kakao.com/web/documentation/#Map_Methods
     //#region Center
     setCenter(position) {
-        const center = new kakao.maps.LatLng(position.latitude, position.longitude);
+        const center = utils.makeKakaoObject(position);
         this.map.setCenter(center);
     }
     getCenter() {
@@ -185,10 +185,7 @@ export class Map {
             this.map.setLevel(level);
         }
         else {
-            options = utils.removeNullProperties(options);
-            if (options.anchor) {
-                options.anchor = utils.newLatLng(options.anchor);
-            }
+            options = utils.makeKakaoObject(options);
             this.map.setLevel(level, options);
         }
     }

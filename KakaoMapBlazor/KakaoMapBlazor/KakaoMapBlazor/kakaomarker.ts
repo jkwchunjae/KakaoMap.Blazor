@@ -10,11 +10,30 @@ export class Marker {
     constructor(options, instance) {
         this.dotnetInstance = instance;
 
-        if (options.position) {
-            options.position = utils.newLatLng(options.position);
+        options = utils.makeKakaoObject(options);
+        if (options.image) {
+            options.image = this.makeMarkerImage(options.image);
         }
 
         this.marker = new kakao.maps.Marker(options);
+    }
+
+    private makeMarkerImage(image) {
+        image = utils.makeKakaoObject(image);
+        if (image.options) {
+            const markerImage = new kakao.maps.MarkerImage(
+                image.src,
+                new kakao.maps.Size(image.size.width, image.size.height),
+                image.options
+            )
+            return markerImage;
+        } else {
+            const markerImage = new kakao.maps.MarkerImage(
+                image.src,
+                new kakao.maps.Size(image.size.width, image.size.height)
+            )
+            return markerImage;
+        }
     }
 
     //#region Events
@@ -45,22 +64,8 @@ export class Marker {
     }
 
     setImage(image) {
-        image = utils.removeNullProperties(image);
-        if (image.options) {
-            const options = utils.makeMarkerImageOption(image.options);
-            const markerImage = new kakao.maps.MarkerImage(
-                image.src,
-                new kakao.maps.Size(image.size.width, image.size.height),
-                options
-            )
-            this.marker.setImage(markerImage);
-        } else {
-            const markerImage = new kakao.maps.MarkerImage(
-                image.src,
-                new kakao.maps.Size(image.size.width, image.size.height)
-            )
-            this.marker.setImage(markerImage);
-        }
+        const markerImage = this.makeMarkerImage(image);
+        this.marker.setImage(markerImage);
     }
 
     getImage() {
@@ -70,7 +75,7 @@ export class Marker {
     }
 
     setPosition(position) {
-        position = utils.newLatLng(position);
+        position = utils.makeKakaoObject(position);
         this.marker.setPosition(position);
     }
 
