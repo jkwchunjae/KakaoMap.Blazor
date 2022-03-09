@@ -53,4 +53,5 @@ public interface IKakaoMap
 
 
     ValueTask<IKakaoMarker> SetMarker(MarkerCreateOptionInMap option);
+    ValueTask<IKakaoInfoWindow> SetInfoWindow(InfoWindowCreateOption option);
 }

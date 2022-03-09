@@ -51,4 +51,17 @@ public partial class KakaoMap : IKakaoMap, IDisposable
 
         return marker;
     }
+
+    public async ValueTask<IKakaoInfoWindow> SetInfoWindow(InfoWindowCreateOption option)
+    {
+        if (_module == null)
+            throw new ModuleNotLoadedException();
+        if (_map == null)
+            throw new NullReferenceException("map is null. CreateMap first.");
+
+        var infoWindow = new KakaoInfoWindow(_module);
+        await infoWindow.CreateInfoWindowAsync(_map, option);
+
+        return infoWindow;
+    }
 }
