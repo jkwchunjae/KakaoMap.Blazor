@@ -1,4 +1,4 @@
-﻿namespace KakaoMapBlazor.Options;
+﻿namespace KakaoMapBlazor.Map;
 
 public class MapCreateOption
 {

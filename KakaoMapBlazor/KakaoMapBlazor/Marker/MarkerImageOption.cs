@@ -1,4 +1,4 @@
-﻿namespace KakaoMapBlazor.Options;
+﻿namespace KakaoMapBlazor.Marker;
 
 public class MarkerImageOption
 {
