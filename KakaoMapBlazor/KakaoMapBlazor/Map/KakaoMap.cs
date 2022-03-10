@@ -64,4 +64,17 @@ public partial class KakaoMap : IKakaoMap, IDisposable
 
         return infoWindow;
     }
+    public async ValueTask<IKakaoPolyLine> SetPolyLine(PolyLineCreateOption option)
+    {
+        if (_module == null)
+            throw new ModuleNotLoadedException();
+        if (_map == null)
+            throw new NullReferenceException("map is null. CreateMap first.");
+
+        var polyLine = new KakaoPolyLine(_module);
+        await polyLine.CreatePolyLineAsync(_map, option);
+
+        return polyLine;
+    }
+
 }
