@@ -29,6 +29,11 @@ public partial class KakaoMarker : IKakaoMarker, IDisposable
         {
             _marker = marker;
         }
+
+        foreach (var fn in _markerLoadedAction)
+        {
+            await fn(_marker);
+        }
     }
 
     public async ValueTask SetMap(IJSObjectReference map)
