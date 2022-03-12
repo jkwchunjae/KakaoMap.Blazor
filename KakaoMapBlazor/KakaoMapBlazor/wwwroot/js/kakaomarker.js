@@ -2,9 +2,10 @@ import { utils } from "./utils.js";
 export class Marker {
     marker;
     dotnetInstance;
-    constructor(options, instance) {
+    constructor(map, options, instance) {
         this.dotnetInstance = instance;
         options = utils.makeKakaoObject(options);
+        options['map'] = map.getMapObject();
         if (options.image) {
             options.image = this.makeMarkerImage(options.image);
         }

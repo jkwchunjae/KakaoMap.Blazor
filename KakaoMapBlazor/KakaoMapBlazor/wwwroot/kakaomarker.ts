@@ -7,10 +7,11 @@ export class Marker {
     private marker: any;
     private dotnetInstance: any;
 
-    constructor(options, instance) {
+    constructor(map: Map, options, instance) {
         this.dotnetInstance = instance;
 
         options = utils.makeKakaoObject(options);
+        options['map'] = map.getMapObject();
         if (options.image) {
             options.image = this.makeMarkerImage(options.image);
         }

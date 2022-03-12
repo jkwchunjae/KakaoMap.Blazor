@@ -21,10 +21,10 @@ public partial class KakaoMarker : IKakaoMarker, IDisposable
         _kakaoMarkerRef?.Dispose();
     }
 
-    public async ValueTask CreateMarkerAsync(MarkerCreateOptionInMap option)
+    public async ValueTask CreateMarkerAsync(IJSObjectReference map, MarkerCreateOptionInMap option)
     {
         _kakaoMarkerRef = DotNetObjectReference.Create(this);
-        var marker = await _module.InvokeAsync<IJSObjectReference>("createMarker", option, _kakaoMarkerRef);
+        var marker = await _module.InvokeAsync<IJSObjectReference>("createMarker", map, option, _kakaoMarkerRef);
         lock (_markerLock)
         {
             _marker = marker;

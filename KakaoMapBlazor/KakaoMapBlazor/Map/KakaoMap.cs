@@ -46,8 +46,7 @@ public partial class KakaoMap : IKakaoMap, IDisposable
             throw new NullReferenceException("map is null. CreateMap first.");
 
         var marker = new KakaoMarker(_module);
-        await marker.CreateMarkerAsync(option);
-        await marker.SetMap(_map);
+        await marker.CreateMarkerAsync(_map, option);
 
         return marker;
     }
@@ -64,6 +63,20 @@ public partial class KakaoMap : IKakaoMap, IDisposable
 
         return infoWindow;
     }
+
+    public async ValueTask<IKakaoCustomOverlay> SetCustomOverlay(CustomOverlayCreateOption option)
+    {
+        if (_module == null)
+            throw new ModuleNotLoadedException();
+        if (_map == null)
+            throw new NullReferenceException("map is null. CreateMap first.");
+
+        var customOverlay = new KakaoCustomOverlay(_module);
+        await customOverlay.CreateCustomOverlayAsync(_map, option);
+
+        return customOverlay;
+    }
+
     public async ValueTask<IKakaoPolyLine> SetPolyLine(PolyLineCreateOption option)
     {
         if (_module == null)
