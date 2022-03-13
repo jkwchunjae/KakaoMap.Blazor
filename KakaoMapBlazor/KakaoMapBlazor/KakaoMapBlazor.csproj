@@ -5,7 +5,29 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <TypeScriptToolsVersion>4.6</TypeScriptToolsVersion>
+    <PackageProjectUrl>https://github.com/jkwchunjae/KakaoMap.Blazor</PackageProjectUrl>
+    <Description>Kakao map web API for Blazor</Description>
+    <RepositoryUrl>https://github.com/jkwchunjae/KakaoMap.Blazor</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>kakao;kakaomap;blazor;카카오;카카오지도</PackageTags>
+    <NeutralLanguage>ko-KR</NeutralLanguage>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageId></PackageId>
+    <Authors>jkwchunjae</Authors>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.2" />
