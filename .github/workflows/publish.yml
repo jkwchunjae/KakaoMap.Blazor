@@ -36,7 +36,7 @@ jobs:
           # VERSION_STATIC: 1.0.0
 
           # Flag to toggle git tagging, enabled by default
-          TAG_COMMIT: false
+          TAG_COMMIT: true
 
           # Format of the git tag, [*] gets replaced with actual version
           # TAG_FORMAT: v*
@@ -48,4 +48,4 @@ jobs:
           NUGET_SOURCE: https://api.nuget.org
 
           # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
-          INCLUDE_SYMBOLS: true
+          INCLUDE_SYMBOLS: false
