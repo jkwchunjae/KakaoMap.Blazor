@@ -52,8 +52,8 @@ public interface IKakaoMap
 
 
 
-    ValueTask<IKakaoMarker> SetMarker(MarkerCreateOptionInMap option);
-    ValueTask<IKakaoInfoWindow> SetInfoWindow(InfoWindowCreateOption option);
-    ValueTask<IKakaoCustomOverlay> SetCustomOverlay(CustomOverlayCreateOption option);
-    ValueTask<IKakaoPolyLine> SetPolyLine(PolyLineCreateOption option);
+    ValueTask<IKakaoMarker> CreateMarker(MarkerCreateOptionInMap option);
+    ValueTask<IKakaoInfoWindow> CreateInfoWindow(InfoWindowCreateOption option);
+    ValueTask<IKakaoCustomOverlay> CreateCustomOverlay(CustomOverlayCreateOption option);
+    ValueTask<IKakaoPolyLine> CreatePolyLine(PolyLineCreateOption option);
 }

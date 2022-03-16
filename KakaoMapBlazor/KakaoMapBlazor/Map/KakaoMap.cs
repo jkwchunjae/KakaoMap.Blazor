@@ -38,7 +38,7 @@ public partial class KakaoMap : IKakaoMap, IDisposable
         }
     }
 
-    public async ValueTask<IKakaoMarker> SetMarker(MarkerCreateOptionInMap option)
+    public async ValueTask<IKakaoMarker> CreateMarker(MarkerCreateOptionInMap option)
     {
         if (_module == null)
             throw new ModuleNotLoadedException();
@@ -51,7 +51,7 @@ public partial class KakaoMap : IKakaoMap, IDisposable
         return marker;
     }
 
-    public async ValueTask<IKakaoInfoWindow> SetInfoWindow(InfoWindowCreateOption option)
+    public async ValueTask<IKakaoInfoWindow> CreateInfoWindow(InfoWindowCreateOption option)
     {
         if (_module == null)
             throw new ModuleNotLoadedException();
@@ -64,7 +64,7 @@ public partial class KakaoMap : IKakaoMap, IDisposable
         return infoWindow;
     }
 
-    public async ValueTask<IKakaoCustomOverlay> SetCustomOverlay(CustomOverlayCreateOption option)
+    public async ValueTask<IKakaoCustomOverlay> CreateCustomOverlay(CustomOverlayCreateOption option)
     {
         if (_module == null)
             throw new ModuleNotLoadedException();
@@ -77,7 +77,7 @@ public partial class KakaoMap : IKakaoMap, IDisposable
         return customOverlay;
     }
 
-    public async ValueTask<IKakaoPolyLine> SetPolyLine(PolyLineCreateOption option)
+    public async ValueTask<IKakaoPolyLine> CreatePolyLine(PolyLineCreateOption option)
     {
         if (_module == null)
             throw new ModuleNotLoadedException();
