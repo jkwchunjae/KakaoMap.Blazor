@@ -41,7 +41,7 @@
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="copy /Y KakaoMapBlazor\*.ts wwwroot" Condition="'$(OS)' == 'Windows_NT'"/>
-    <Exec Command="cp KakaoMapBlazor\*.ts wwwroot" Condition="'$(OS)' != 'Windows_NT'"/>
+    <Exec Command="cp KakaoMapBlazor/*.ts wwwroot" Condition="'$(OS)' != 'Windows_NT'"/>
   </Target>
 
 </Project>
