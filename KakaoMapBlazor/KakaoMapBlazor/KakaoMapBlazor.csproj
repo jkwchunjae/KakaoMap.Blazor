@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="copy /Y KakaoMapBlazor\*.ts wwwroot" />
+    <Exec Command="if $(ConfigurationName) == Debug copy /Y KakaoMapBlazor\*.ts wwwroot" />
   </Target>
 
 </Project>
