@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>2.0.3</Version>
+    <Version>2.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,4 +38,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="copy /Y KakaoMapBlazor\*.ts wwwroot" Condition="'$(OS)' == 'Windows_NT'"/>
+    <Exec Command="cp KakaoMapBlazor/*.ts wwwroot" Condition="'$(OS)' != 'Windows_NT'"/>
+  </Target>
+
 </Project>
