@@ -46,7 +46,7 @@ In `*.razor` file
             KakaoMap.Clicked += async (s, e) =>
             {
                 var position = e.LatLng;
-                var marker = await KakaoMap.SetMarker(new MarkerCreateOptionInMap
+                var marker = await KakaoMap.CreateMarker(new MarkerCreateOptionInMap
                 {
                     Position = position,
                 });
