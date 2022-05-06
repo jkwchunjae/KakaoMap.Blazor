@@ -21,6 +21,8 @@ public partial class KakaoMarker : IKakaoMarker, IDisposable
         _kakaoMarkerRef?.Dispose();
     }
 
+    public IJSObjectReference? Object => _marker;
+
     public async ValueTask CreateMarkerAsync(IJSObjectReference map, MarkerCreateOptionInMap option)
     {
         _kakaoMarkerRef = DotNetObjectReference.Create(this);
@@ -39,6 +41,11 @@ public partial class KakaoMarker : IKakaoMarker, IDisposable
     public async ValueTask SetMap(IJSObjectReference map)
     {
         await _marker!.InvokeVoidAsync("setMap", map);
+    }
+
+    public async ValueTask Close()
+    {
+        await _marker!.InvokeVoidAsync("removeMap");
     }
 }
 

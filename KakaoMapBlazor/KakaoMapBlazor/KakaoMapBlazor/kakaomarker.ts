@@ -19,6 +19,10 @@ export class Marker {
         this.marker = new kakao.maps.Marker(options);
     }
 
+    getObject() {
+        return this.marker;
+    }
+
     private makeMarkerImage(image) {
         image = utils.makeKakaoObject(image);
         if (image.options) {
@@ -122,6 +126,10 @@ export class Marker {
 
     getMap() {
         this.marker.getMap();
+    }
+
+    removeMap() {
+        this.marker.setMap(null);
     }
 
     setImage(image) {

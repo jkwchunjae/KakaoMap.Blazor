@@ -35,4 +35,14 @@ public class KakaoInfoWindow : IKakaoInfoWindow, IDisposable
     {
         await _infoWindow!.InvokeVoidAsync("close");
     }
+
+    public async ValueTask Open()
+    {
+        await _infoWindow!.InvokeVoidAsync("open");
+    }
+
+    public async ValueTask Open(IKakaoMarker marker)
+    {
+        await _infoWindow!.InvokeVoidAsync("openWithMarker", marker.Object);
+    }
 }

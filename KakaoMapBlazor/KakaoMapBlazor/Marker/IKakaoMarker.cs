@@ -2,6 +2,8 @@
 
 public interface IKakaoMarker
 {
+    IJSObjectReference? Object { get; }
+    ValueTask Close();
     ValueTask SetImage(MarkerImage image);
     ValueTask<MarkerImage> GetImage();
     ValueTask SetPosition(LatLng position);
