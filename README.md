@@ -17,8 +17,8 @@ In `*.razor` file
 @using KakaoMapBlazor
 
 <KakaoMapComponent
-    @ref="kakaoMapComponent"
     CreateOption="mapCreateOption"
+    OnMapCreated="OnMapCreated"
     Style="width: 500px; height: 400px;">
 </KakaoMapComponent>
 
@@ -26,37 +26,33 @@ In `*.razor` file
     [Inject]
     private IJSRuntime JS { get; set; }
 
-    KakaoMapComponent kakaoMapComponent;
-    IKakaoMap KakaoMap => kakaoMapComponent?.Instance;
-    
+    IKakaoMap KakaoMap;
     MapCreateOption mapCreateOption = new MapCreateOption(new LatLng(33.450701, 126.570667))
     {
         MapTypeId = MapType.RoadMap,
         Level = 4,
     };
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected async Task OnMapCreated(IKakaoMap map)
     {
-        if (firstRender)
+        KakaoMap = map;
+        KakaoMap.Clicked += async (s, e) =>
         {
-            KakaoMap.Clicked += async (s, e) =>
+            await JS.InvokeVoidAsync("console.log", "OnClick", e);
+        };
+        KakaoMap.Clicked += async (s, e) =>
+        {
+            var position = e.LatLng;
+            var marker = await KakaoMap.CreateMarker(new MarkerCreateOptionInMap
             {
-                await JS.InvokeVoidAsync("console.log", "OnClick", e);
-            };
-            KakaoMap.Clicked += async (s, e) =>
+                Position = position,
+            });
+            
+            marker.Click += async (s, _) =>
             {
-                var position = e.LatLng;
-                var marker = await KakaoMap.CreateMarker(new MarkerCreateOptionInMap
-                {
-                    Position = position,
-                });
-                
-                marker.Click += async (s, _) =>
-                {
-                    await JS.InvokeVoidAsync("console.log", "marker clicked");
-                };
+                await JS.InvokeVoidAsync("console.log", "marker clicked");
             };
-        }
+        };
     }
 }
 
