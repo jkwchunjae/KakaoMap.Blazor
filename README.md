@@ -15,6 +15,10 @@ https://apis.map.kakao.com/web/guide/
 In `*.razor` file
 ```
 @using KakaoMapBlazor
+@using KakaoMapBlazor.Map
+@using KakaoMapBlazor.Models
+@using KakaoMapBlazor.Enums
+@using KakaoMapBlazor.Marker
 
 <KakaoMapComponent
     CreateOption="mapCreateOption"
@@ -33,14 +37,14 @@ In `*.razor` file
         Level = 4,
     };
 
-    protected async Task OnMapCreated(IKakaoMap map)
+    protected void OnMapCreated(IKakaoMap map)
     {
         KakaoMap = map;
-        KakaoMap.Clicked += async (s, e) =>
+        KakaoMap.Click += async (s, e) =>
         {
             await JS.InvokeVoidAsync("console.log", "OnClick", e);
         };
-        KakaoMap.Clicked += async (s, e) =>
+        KakaoMap.Click += async (s, e) =>
         {
             var position = e.LatLng;
             var marker = await KakaoMap.CreateMarker(new MarkerCreateOptionInMap
