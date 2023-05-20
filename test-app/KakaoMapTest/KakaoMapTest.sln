@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1705.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KakaoMapTest", "KakaoMapTest\KakaoMapTest.csproj", "{5BEFA6DD-9D79-4C86-96FF-7AC33CA64495}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KakaoMapBlazor", "..\..\KakaoMapBlazor\KakaoMapBlazor\KakaoMapBlazor.csproj", "{49D6B62A-7B82-4A36-AAE3-C4549BA478C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5BEFA6DD-9D79-4C86-96FF-7AC33CA64495}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BEFA6DD-9D79-4C86-96FF-7AC33CA64495}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BEFA6DD-9D79-4C86-96FF-7AC33CA64495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49D6B62A-7B82-4A36-AAE3-C4549BA478C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49D6B62A-7B82-4A36-AAE3-C4549BA478C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49D6B62A-7B82-4A36-AAE3-C4549BA478C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49D6B62A-7B82-4A36-AAE3-C4549BA478C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
