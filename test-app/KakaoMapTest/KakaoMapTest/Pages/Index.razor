@@ -1,0 +1,34 @@
+﻿@page "/"
+@inject IJSRuntime JS
+
+<PageTitle>Index</PageTitle>
+
+<div style="width: 100%; height: 80vh;">
+<KakaoMapComponent CreateOption="mapCreateOption"
+                   OnMapCreated="OnMapCreated"
+                   Style="width: 100%; height: 100%;"></KakaoMapComponent>
+</div>
+
+@code
+{
+    IKakaoMap KakaoMap;
+    MapCreateOption mapCreateOption = new MapCreateOption(new LatLng(36.55506321886859, 127.61013231891525))
+    {
+        MapTypeId = MapType.RoadMap,
+        Level = 12,
+    };
+
+    protected void OnMapCreated(IKakaoMap map)
+    {
+        KakaoMap = map;
+
+        KakaoMap.Click += async (s, e) =>
+        {
+            await JS.InvokeVoidAsync("console.log", "map clicked!", e);
+            await KakaoMap.CreateMarker(new MarkerCreateOptionInMap
+            {
+                Position = e.LatLng,
+            });
+        };
+    }
+}
