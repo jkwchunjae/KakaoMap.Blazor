@@ -25,10 +25,15 @@
         KakaoMap.Click += async (s, e) =>
         {
             await JS.InvokeVoidAsync("console.log", "map clicked!", e);
-            await KakaoMap.CreateMarker(new MarkerCreateOptionInMap
+            var marker = await KakaoMap.CreateMarker(new MarkerCreateOptionInMap
             {
                 Position = e.LatLng,
             });
+
+            marker.Click += async (s, e) =>
+            {
+                await JS.InvokeVoidAsync("console.log", "marker clicked!", e);
+            };
         };
     }
 }
